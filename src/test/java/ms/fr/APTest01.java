@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
@@ -26,7 +27,7 @@ public class APTest01 {
 	
 	@After
 	public void tearDown() {
-		driver.quit();
+		//driver.quit();
 	}
 	
 	@Test
@@ -41,6 +42,18 @@ public class APTest01 {
 		
 		Select select = new Select(page_result.sort_result_select);
 		select.selectByValue("quantity:desc");
+		
+		PageProduct page_product = page_result.selectionProduct(driver);
+		page_product.color_blue_select.click();
+		select = new Select(page_product.size_select);
+		select.selectByVisibleText("M");
+		TechnicalTools.fillField(page_product.quantity_field, "2");
+		page_product.addcart_btn.click();
+		page_product.closewndw_btn.click();
+		
+		Actions a = new Actions(driver);
+		a.moveToElement(page_product.cart_btn).build().perform();
+		a.moveToElement(page_product.cart_cross).click().build().perform();
 		
 	}
 }
