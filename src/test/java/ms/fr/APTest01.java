@@ -32,7 +32,7 @@ public class APTest01 {
 		driver.quit();
 	}
 	
-	//@Test
+	@Test
 	public void test01() throws Exception{
 		//on se connecte au site
 		driver.get("http://automationpractice.com/index.php");
@@ -66,7 +66,7 @@ public class APTest01 {
 		
 	}
 	
-	@Test (expected=Exception.class, timeout=1000)
+	//@Test (expected=Exception.class, timeout=1000)
 	public void test02() throws EmptyFieldEx{
 		driver.get("http://automationpractice.com/index.php");
 		PageIndex page_index = PageFactory.initElements(driver, PageIndex.class);
